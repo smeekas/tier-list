@@ -10,7 +10,12 @@
   flex: 1;
   /* border: 1px solid greenyellow; */
 }
-
+@media screen and (max-width:370px) {
+    .settings{
+     flex-direction: column;
+     width: 50px;
+    }
+}
 .center {
   display: flex;
   justify-content: center;

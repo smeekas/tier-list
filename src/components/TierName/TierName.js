@@ -1,5 +1,5 @@
 import styles from "./TierName.module.css";
-import { useEffect, useRef, useState } from "react";
+import {  useRef } from "react";
 import { useDispatch } from "react-redux";
 const TierName = ({ name, color, gIndex, tierName }) => {
   const dispatch = useDispatch();

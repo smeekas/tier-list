@@ -22,6 +22,7 @@ function Settings({ index, limit, defaultColor }) {
           defaultColor={defaultColor}
           setShowModal={setShowModal}
           index={index}
+          limit={limit}
         />
       )}
       <div

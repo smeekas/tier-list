@@ -67,10 +67,10 @@
 .buttons {
   margin-top: 0.5rem;
   display: grid;
- grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 4px;
 }
-button{
+button {
   outline: none;
   border: none;
   background-color: #333;
@@ -81,11 +81,18 @@ button{
   cursor: pointer;
   border: 1px solid #666;
 }
-button:hover{
+button:hover {
   background-color: #111;
 }
-@media screen and (max-width:415px) {
-    .buttons{
-      grid-template-columns: 1fr;
-    }
+button:disabled {
+  cursor: not-allowed;
+  color: #666;
+}
+button:disabled:hover {
+  background-color: #333;
+}
+@media screen and (max-width: 415px) {
+  .buttons {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,5 +1,3 @@
-import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
-
 const initialValue = {
   item: null,
   index: null,
@@ -18,6 +16,11 @@ const initialValue = {
         "https://countryflagsapi.com/png/cz",
         "https://countryflagsapi.com/png/dk",
         "https://countryflagsapi.com/png/ro",
+        "https://countryflagsapi.com/png/de",
+        "https://countryflagsapi.com/png/gr",
+        "https://countryflagsapi.com/png/no",
+        "https://countryflagsapi.com/png/se",
+        "https://countryflagsapi.com/png/es",
       ],
     },
     { color: "FF7F7F", name: "S", group: Math.random().toString(), items: [] },
@@ -25,25 +28,27 @@ const initialValue = {
       color: "FFBF7F",
       name: "A",
       group: Math.random().toString(),
-      items: [
-        "https://countryflagsapi.com/png/de",
-        "https://countryflagsapi.com/png/gr",
-      ],
+      items: [],
     },
     {
       color: "FFDF7F",
       name: "B",
       group: Math.random().toString(),
-      items: [
-        "https://countryflagsapi.com/png/no",
-        "https://countryflagsapi.com/png/se",
-        "https://countryflagsapi.com/png/es",
-      ],
+      items: [],
     },
   ],
 };
 
 const tierReducer = (state = initialValue, action) => {
+  if (action.type === "ALL_NEW") {
+    const newArr = [...state.list];
+    newArr[0].items = action.images;
+    let i = 1;
+    for (i = 1; i < newArr.length; i++) {
+      newArr[i].items = [];
+    }
+    return { ...state, list: newArr };
+  }
   if (action.type === "ALL_CHANGE") {
     const newArr = [...state.all];
     const newList = [...state.list];
@@ -156,7 +161,6 @@ const tierReducer = (state = initialValue, action) => {
 
   if (action.type === "DOWN_INDEX") {
     const newArr = [...state.list];
-    console.log(action.index);
     const temp = newArr[action.index + 1];
     newArr[action.index + 1] = newArr[action.index];
     newArr[action.index] = temp;

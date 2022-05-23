@@ -3,11 +3,21 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import styles from "./Modal.module.css";
 import { MdClose } from "react-icons/md";
-function Modal({ setShowModal, index, defaultColor }) {
+import { motion } from "framer-motion";
+function Modal({ setShowModal, index, defaultColor, limit }) {
   const disaptch = useDispatch();
   return createPortal(
     <div className={styles.backdrop}>
-      <div className={styles.modal}>
+      <motion.div
+        initial={{
+          y: -100,
+        }}
+        animate={{
+          y: 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className={styles.modal}
+      >
         <section className={styles.navbar}>
           <MdClose
             className={styles.closeButton}
@@ -57,6 +67,7 @@ function Modal({ setShowModal, index, defaultColor }) {
             Clear Row Images
           </button>
           <button
+            disabled={limit === 2 ? true : false}
             type="button"
             onClick={() => {
               disaptch({ type: "DELETE_ROW", gIndex: index });
@@ -82,7 +93,7 @@ function Modal({ setShowModal, index, defaultColor }) {
             Add a Row Above
           </button>
         </section>
-      </div>
+      </motion.div>
     </div>,
     document.getElementById("backdrop")
   );

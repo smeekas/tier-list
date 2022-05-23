@@ -5,7 +5,7 @@ import styles from "./List.module.css";
 function List() {
   const list = useSelector((state) => state.list);
   return (
-    <div className={styles.list}>
+    <div id="screenshotthis" className={`${styles.list}`}>
       {list.slice(1, list.length).map((item, index) => {
         return (
           <Tier

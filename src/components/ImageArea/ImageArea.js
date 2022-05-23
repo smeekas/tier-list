@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ImageArea.module.css";
 
@@ -7,7 +7,6 @@ const ImageArea = ({ name, list }) => {
   const currDragImg = useSelector((state) => state.index);
   const currDragGrp = useSelector((state) => state.group);
   const dragging = useSelector((state) => state.dragging);
-  const [parent, setParent] = useState(false);
   const currentNode = useRef();
   const dragEnterHandler = (e, index) => {
     if (index !== currDragImg || name !== currDragGrp) {
@@ -60,14 +59,12 @@ const ImageArea = ({ name, list }) => {
         list.length === 0
           ? (e) => {
               // e.stopPropagation()
-              console.log("parent ");
               dragEnterHandler(e, list.length);
             }
           : null
       }
       onDragEnd={(e) => {
         dispatch({ type: "PARENT", parent: false });
-        console.log("parent end");
       }}
     >
       {list.map((image, index) => {
@@ -78,7 +75,6 @@ const ImageArea = ({ name, list }) => {
             onDragEnter={(e) => {
               dispatch({ type: "PARENT", parent: true });
               e.stopPropagation();
-              console.log("child");
               dragEnterHandler(e, index);
             }}
             // onDragEnterCapture={(e)=>e.preventDefault()}

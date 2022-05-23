@@ -10,10 +10,16 @@
 }
 .listOfImages {
   display: flex;
-  width: 80%;
+  width: 60%;
   flex-wrap: wrap;
-  margin: 2rem auto;
+  margin:  auto;
+  margin-bottom: 2rem;
 }
 .current {
   opacity: 0.1;
+}
+@media screen and (max-width: 1400px) {
+  .listOfImages {
+    width: 80%;
+  }
 }
