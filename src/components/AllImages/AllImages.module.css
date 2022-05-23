@@ -1,0 +1,19 @@
+.dragImage {
+  width: 80px;
+  height: 80px;
+  margin: 0 0.2rem;
+}
+.dragImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+.listOfImages {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}
+.current {
+  opacity: 0.1;
+}

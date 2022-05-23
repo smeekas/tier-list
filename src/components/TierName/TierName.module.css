@@ -1,0 +1,14 @@
+.tierName {
+  /* background-color: brown; */
+  color:black;
+  width: 80px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+span{
+    word-wrap: break-word;
+    width: 100%;
+
+}
