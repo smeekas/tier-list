@@ -2,6 +2,7 @@ import * as htmlToImage from "html-to-image";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import styles from "./Dloadupload.module.css";
+import tierActionTypes from "../../actionTypes/tierActionTypes";
 function Download() {
   const uploadRef = useRef();
   const takescreenshot = () => {
@@ -21,7 +22,7 @@ function Download() {
     for (i = 0; i < e.target.files.length; i++) {
       imageArr.push(URL.createObjectURL(e.target.files[i]));
     }
-    dispatch({ type: "ALL_NEW", images: imageArr });
+    dispatch({ type: tierActionTypes.ALL_NEW, images: imageArr });
   };
   return (
     <>

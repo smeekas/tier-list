@@ -9,10 +9,8 @@
 }
 .dragImage {
  height: auto;
-  /* border: 1px solid blue; */
   width: 80px;
   height: 80px;
-  /* background-color: cadetblue; */
   padding: 0 0.2rem;
 }
  img {

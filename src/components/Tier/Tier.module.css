@@ -1,7 +1,6 @@
 .tier{
     display: flex;
     height: auto;
-    /* min-height:  90px; */
     border: 1px solid #777;
 }
 .settings{

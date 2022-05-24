@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import styles from "./Modal.module.css";
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
+import tierActionTypes from "../../actionTypes/tierActionTypes";
 function Modal({ setShowModal, index, defaultColor, limit }) {
   const disaptch = useDispatch();
   return createPortal(
@@ -30,7 +31,7 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
             <input
               onBlur={(e) => {
                 disaptch({
-                  type: "COLOR_CHANGE",
+                  type: tierActionTypes.COLOR_CHANGE,
                   gIndex: index,
                   color: e.target.value,
                 });
@@ -48,7 +49,7 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
             onBlur={(e) => {
               if (e.target.value.trim().length !== 0) {
                 disaptch({
-                  type: "NAME_CHANGE",
+                  type: tierActionTypes.NAME_CHANGE,
                   gIndex: index,
                   text: e.target.value,
                 });
@@ -61,7 +62,7 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
           <button
             type="button"
             onClick={() => {
-              disaptch({ type: "CLEAR_ROW", gIndex: index });
+              disaptch({ type: tierActionTypes.CLEAR_ROW, gIndex: index });
             }}
           >
             Clear Row Images
@@ -70,7 +71,7 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
             disabled={limit === 2 ? true : false}
             type="button"
             onClick={() => {
-              disaptch({ type: "DELETE_ROW", gIndex: index });
+              disaptch({ type: tierActionTypes.DELETE_ROW, gIndex: index });
               setShowModal(false);
             }}
           >
@@ -79,7 +80,11 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
           <button
             type="button"
             onClick={() => {
-              disaptch({ type: "ADD_ROW", where: "below", gIndex: index });
+              disaptch({
+                type: tierActionTypes.ADD_ROW,
+                where: "below",
+                gIndex: index,
+              });
             }}
           >
             Add a Row Below
@@ -87,7 +92,11 @@ function Modal({ setShowModal, index, defaultColor, limit }) {
           <button
             type="button"
             onClick={() => {
-              disaptch({ type: "ADD_ROW", where: "above", gIndex: index });
+              disaptch({
+                type: tierActionTypes.ADD_ROW,
+                where: "above",
+                gIndex: index,
+              });
             }}
           >
             Add a Row Above

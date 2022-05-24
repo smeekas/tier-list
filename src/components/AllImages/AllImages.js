@@ -1,9 +1,8 @@
-import {  useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AllImages.module.css";
-
+import tierActionTypes from "../../actionTypes/tierActionTypes";
 function AllImages() {
-  // const [dragging, setDragging] = useState(false);
   const list = useSelector((state) => state.list[0].items);
   const dragging = useSelector((state) => state.dragging);
   const currDragImg = useSelector((state) => state.index);
@@ -13,41 +12,35 @@ function AllImages() {
   const dragStartHandler = (e, index) => {
     currentNode.current = e.target;
     dispatch({
-      type: "SET_CURR",
+      type: tierActionTypes.SET_CURR,
       item: list[index],
       index: index,
       group: "all",
     });
     e.target.addEventListener("dragend", dragEndHandler);
     setTimeout(() => {
-      dispatch({ type: "SET_DRAGGING", dragging: true });
-      // setDragging(true);
+      dispatch({ type: tierActionTypes.SET_DRAGGING, dragging: true });
     }, 0);
   };
   const dragEndHandler = () => {
     currentNode.current = null;
     dispatch({
-      type: "SET_CURR",
+      type: tierActionTypes.SET_CURR,
       index: null,
       group: null,
       item: null,
     });
-    dispatch({ type: "SET_DRAGGING", dragging: false });
+    dispatch({ type: tierActionTypes.SET_DRAGGING, dragging: false });
   };
   const dragEnterHandler = (e, index) => {
     //! TIER TO ALLIMAGES
     if (index !== currDragImg || currDragGrp !== "all") {
       dispatch({
-        type: "LIST_CHANGE",
+        type: tierActionTypes.LIST_CHANGE,
         currIndex: currDragImg,
         hoverIndex: index,
         currGrp: "all",
       });
-      // dispatch({
-      //   type: "SET_INDEX_GRP",
-
-      //   index: index,
-      // });
     }
   };
 

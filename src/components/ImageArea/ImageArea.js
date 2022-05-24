@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ImageArea.module.css";
-
+import tierActionTypes from "../../actionTypes/tierActionTypes";
 const ImageArea = ({ name, list }) => {
   const dispatch = useDispatch();
   const currDragImg = useSelector((state) => state.index);
@@ -11,7 +11,7 @@ const ImageArea = ({ name, list }) => {
   const dragEnterHandler = (e, index) => {
     if (index !== currDragImg || name !== currDragGrp) {
       dispatch({
-        type: "LIST_CHANGE",
+        type: tierActionTypes.LIST_CHANGE,
         currIndex: currDragImg,
         hoverIndex: index,
         currGrp: name,
@@ -21,29 +21,18 @@ const ImageArea = ({ name, list }) => {
   const dragStartHandler = (e, index) => {
     currentNode.current = e.target;
     dispatch({
-      type: "SET_CURR",
+      type: tierActionTypes.SET_CURR,
       item: list[index],
       index: index,
       group: name,
     });
     e.target.addEventListener("dragend", dragEndHandler);
     setTimeout(() => {
-      dispatch({ type: "SET_DRAGGING", dragging: true });
+      dispatch({ type: tierActionTypes.SET_DRAGGING, dragging: true });
     }, 0);
   };
   const dragEndHandler = () => {
-    // currentNode.current = null;
-    console.log("end");
-    // if (!parent) {
-    //   console.log("here")
-    //   dispatch({
-    //     type: "SET_CURR",
-    //     index: null,
-    //     group: null,
-    //     item: null,
-    //   });
-    dispatch({ type: "SET_DRAGGING", dragging: false });
-    // }
+    dispatch({ type: tierActionTypes.SET_DRAGGING, dragging: false });
   };
   const getStyles = (index) => {
     if (index !== currDragImg || currDragGrp !== name) {
@@ -64,7 +53,7 @@ const ImageArea = ({ name, list }) => {
           : null
       }
       onDragEnd={(e) => {
-        dispatch({ type: "PARENT", parent: false });
+        dispatch({ type: tierActionTypes.PARENT, parent: false });
       }}
     >
       {list.map((image, index) => {
@@ -73,12 +62,10 @@ const ImageArea = ({ name, list }) => {
             onDragStart={(e) => dragStartHandler(e, index)}
             key={index}
             onDragEnter={(e) => {
-              dispatch({ type: "PARENT", parent: true });
+              dispatch({ type: tierActionTypes.PARENT, parent: true });
               e.stopPropagation();
               dragEnterHandler(e, index);
             }}
-            // onDragEnterCapture={(e)=>e.preventDefault()}
-
             className={dragging ? getStyles(index) : styles.dragImage}
             draggable
           >

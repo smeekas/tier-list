@@ -3,14 +3,16 @@ import { FiSettings, FiChevronUp, FiChevronDown } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
+import tierActionTypes from "../../actionTypes/tierActionTypes";
+
 function Settings({ index, limit, defaultColor }) {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const upHandler = () => {
-    dispatch({ type: "UP_INDEX", index: index });
+    dispatch({ type: tierActionTypes.UP_INDEX, index: index });
   };
   const downHandler = () => {
-    dispatch({ type: "DOWN_INDEX", index: index });
+    dispatch({ type: tierActionTypes.DOWN_INDEX, index: index });
   };
   const settingHandler = (bool) => {
     setShowModal(bool);

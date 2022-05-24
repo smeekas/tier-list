@@ -1,12 +1,13 @@
 import styles from "./TierName.module.css";
-import {  useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import tierActionTypes from "../../actionTypes/tierActionTypes";
 const TierName = ({ name, color, gIndex, tierName }) => {
   const dispatch = useDispatch();
   const divRef = useRef();
   const blurHandler = (e) => {
     dispatch({
-      type: "NAME_CHANGE",
+      type: tierActionTypes.NAME_CHANGE,
       text: e.target.innerText,
       gIndex: gIndex,
     });
@@ -23,12 +24,9 @@ const TierName = ({ name, color, gIndex, tierName }) => {
       }}
       contentEditable="true"
       suppressContentEditableWarning={true}
-      onKeyDown={(e) => {
-        // inputHandler(e);
-      }}
+      onKeyDown={(e) => {}}
     >
       <span>{tierName}</span>
-      {/* {tierName} */}
     </div>
   );
 };
